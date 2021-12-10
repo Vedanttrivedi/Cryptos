@@ -1,0 +1,16 @@
+<html>
+    <title>Login Page</title>
+    <body>
+       <center>
+        <h1>Login Form</h1>
+        <form action="/user/login/" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username Or Email"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <input type="submit" value="submit">
+        </form>
+        <a href="/accounts/google/login/?process=login">Login With Google</a><br>
+        <a href="{% url 'password_reset' %}">Forget Password??</a>
+       </center>
+    </body>
+</html>
