@@ -16,7 +16,7 @@ from django.utils.encoding import force_bytes
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Welcome Home")
+    return render(request,'user/base.html')
     
 def login(request):
     if request.method=="POST":

@@ -1,75 +1,11 @@
-<html>
-<head>
-    <title>Home</title>
-    <link rel="stylesheet" href="inStyle.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="navl.css">  
-
-    <script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
-</head>    
-<body>
-    
-    <div id="wrapper">
- 
-        <aside id="sidebar-wrapper">
-           <h2 style="color:white; margin-left:20px; margin-top: 13px;"><img src="logo.png" width="40px" height="40px" alt="logo"></h2>
-          <div class="sidebar-brand">
-           <h2 style="color: orange;">CRYPTOS</h2>
-          </div>
-          <ul class="sidebar-nav">
-            <li style="background-color: black; margin-bottom: 20px;">
-              <text style="color: white; margin-left: 50px;">Main Menu</text>
-            </li>
-            <li class="active">
-              <a href="#"><i class="fa fa-home"></i><text style="color: white;">Home</text></a>
-            </li>
-            <li class="active">
-              <a href="#"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
-            </li>
-            <li class="active">
-              <a href="ll.html"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
-            </li>
-            <li class="active">
-              <a href="#"><i class="far fa-newspaper"></i><text style="color: white;">News</text></a>
-            </li>
-            <li class="active">
-                <a href="blog.html"><i class="fas fa-feather-alt"></i><text style="color: white;">Blog</text></a>
-              </li>
-              <li class="active">
-                <a href="#"><i class="fas fa-money-check-alt"></i><text style="color: white;">Converter</text></a>
-              </li>
-          </ul>
-        </aside>
-      
-        <div id="navbar-wrapper">
-          <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a href="#" class="navbar-brand" id="sidebar-toggle" ><i class="fas fa-bars"></i></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
-                <a href="ss.html" class="navbar-brand" id="sidebar-toggle" style="float: right;"><text style="font-size:15px; margin: 0 15px 0 15px;">Signin/Signup</abbr></text></a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      
-        <section id="content-wrapper">
-            <div class="row">
-              <div class="col-lg-12">
-      
-                  </div>
-            </div>
-        </section>
-      
-      </div>
-    <center>
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
     <form class = "shadow-pop-tr" action="/user/login/" method="POST">
       {% csrf_token %}
         <table class="tt" cellpadding="0">
             <tr>
-                <th ><img src="a.png" alt="abc" id="img"></th>
+                <th ><img src="{% static 'user/a.png' %}" alt="abc" id="img"></th>
                 <th><h3>SIGN IN NOW...</h3>
                     <!--<h6>Please enter your data to register</h6></th>-->
                 
@@ -80,7 +16,7 @@
             <div class='g-sign-in-button'>
                 <div class=content-wrapper>
                     <div class='logo-wrapper'>
-                      <a href="/accounts/google/login/?process=login"><img src='g-logo.png'></a>
+                      <a href="/accounts/google/login/?process=login"><img src='{% static "user/g-logo.png" %}'></a>
                     </div>
                     <span class='text-container'>
                   <span >Sign in with Google</span>
@@ -94,8 +30,8 @@
         <table class="pad" cellspacing="10">
             
             <tr>
-                <td>USERNAME: <br><input type="text" name="username" placeholder="Enter Username or Email"></td>
-                <td>PASSWORD:<br> <input type="text" name="password" placeholder="Enter Password"></td>
+                <td>USERNAME: <br><input type="text" name="username" ></td>
+                <td>PASSWORD:<br> <input type="text" name="password" ></td>
             </tr>
             <tr>
                 <td>
@@ -110,12 +46,9 @@
                     </table>
                 </td>
                
-                <td><a href="register.html"><input type="button" name="register" value="Register" class="reg"></a></td>
+                <td><a href="{% url 'registerPage' %}"><input type="button" name="register" value="Register" class="reg"></a></td>
             </tr>
         </table>
     </center>
     </form>
-    <center>
-</body>
-<script src="nav.js"></script>
-</html>
+  {% endblock %}
