@@ -4,6 +4,55 @@
     <link rel="stylesheet" href="inStyle.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="navl.css">  
+    <style>
+            input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+input[type=search] {
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 5px center;
+	border: solid 1px #ccc;
+	padding: 2px 2px 2px 2px;
+	width: 30px;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+
+#demo-2 input[type=search] {
+	width: 15px;
+	padding-left: 10px;
+	color: transparent;
+	cursor: pointer;
+}
+#demo-2 input[type=search]:hover {
+	background-color: #fff;
+}
+#demo-2 input[type=search]:focus {
+	width: 10%;
+	padding-left: 35px;
+	color: #000;
+	background-color: #fff;
+	cursor: auto;
+}
+#demo-2 input:-moz-placeholder {
+	color: transparent;
+}
+#demo-2 input::-webkit-input-placeholder {
+	color: transparent;
+}
+    </style>
 
     <script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
 </head>    
@@ -49,7 +98,10 @@
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
-                <a href="ss.html" class="navbar-brand" id="sidebar-toggle" style="float: right;"><text style="font-size:15px; margin: 0 15px 0 15px;">Signin/Signup</abbr></text></a>
+                <text id="demo-2">
+                  <a href="#"><input type="search" placeholder="Search"></a>
+                </text>
+                <a href="register.html" class="navbar-brand" id="sidebar-toggle" style="float: right;"><text style="font-size:15px; margin: 0 15px 0 15px;">Signin/Signup</abbr></text></a>
               </div>
             </div>
           </nav>
@@ -65,7 +117,7 @@
       
       </div>
     <center>
-    <form class = "shadow-pop-tr" action="/user/login/" method="POST">
+    <form class = "shadow-pop-tr" action="/user/login/" method="POST" id="formm">
       {% csrf_token %}
         <table class="tt" cellpadding="0">
             <tr>
@@ -102,6 +154,7 @@
                     <table >
                         <tr>
                           <td><button class="button" style="vertical-align:middle"><span><i>Done </i></span></button></td>
+                          <tr ><td><label><i><a href="#" style="color:grey; ">Forget Password</a></i></label></td></tr>
                          
                             <!--<td><input type="button" name="login" value="Login" class="log"></td>-->
                             
