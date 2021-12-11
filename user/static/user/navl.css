@@ -119,6 +119,9 @@ body {
   #navbar-wrapper .navbar a i.fas:hover {
     color: orange;
   }
+  #navbar-wrapper .navbar a i.far:hover {
+    color: orange;
+  }
   #navbar-wrapper .navbar a:hover {
     color: orange;
   }
