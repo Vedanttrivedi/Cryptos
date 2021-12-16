@@ -1,11 +1,13 @@
-{% load static %}
 {% extends 'user/base.html' %}
-<link rel="stylesheet" href="{% static 'user/blog.css' %}">
+{% load static %}
+<head>
+  <link rel="stylesheet" type="href/css" href="{% static 'blog.css'%}">
+</head>
+  
 {% block content %}
-
-          <div class="blog-card">
+        <div class="blog-card">
             <div class="meta">
-              <div class="photo" style="background-image: url(blog1.jpg)"></div>
+              <div class="photo" style="background-image: url('/static/user/blog1.jpg')"></div>
               <ul class="details">
                 <li class="author"><a href="#">Tushar</a></li>
                 <li class="date">Dec. 12, 2021</li>
@@ -30,7 +32,7 @@
           </div>
           <div class="blog-card alt">
             <div class="meta">
-              <div class="photo" style="background-image: url(blog2.jpg)"></div>
+              <div class="photo" style="background-image: url(/static/user/blog2.jpg)"></div>
               <ul class="details">
                 <li class="author"><a href="#">Vedant</a></li>
                 <li class="date">Dec. 12, 2021</li>
@@ -52,5 +54,4 @@
               </p>
             </div>
           </div>
-
-          {% endblock %}
+{% endblock %}
