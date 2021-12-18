@@ -1,6 +1,13 @@
 {% extends 'user/base.html' %}
 {% load static %}
 {% block content %}
+{% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-{{ msg.tags }}">
+            <p style="color: white;">{{msg}}</p>
+            </div>
+    {% endfor %}
+{% endif %}
     <form class = "shadow-pop-tr" action="/user/register/" method="POST">
       {% csrf_token %}
         <table class="tt">
@@ -24,8 +31,8 @@
                 <td>EMAIL*:<br> <input type="text" name="email"  required></td>
             </tr>
             <tr>
-                <td>PASSWORD*:<br> <input type="text" name="password"  required></td>
-                <td>REPEAT PASSWORD*:<br> <input type="text" name="conpassword"  required></td>
+                <td>PASSWORD*:<br> <input type="password" name="password"  required></td>
+                <td>REPEAT PASSWORD*:<br> <input type="password" name="conpassword"  required></td>
             </tr>
             <tr>
                 <td>

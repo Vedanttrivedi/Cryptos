@@ -68,7 +68,16 @@
       </div>
     <center>
         {% block content %}
-
+        {% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-{{ msg.tags }}">
+            <p style="color: rgb(219, 95, 13);">{{msg}}</p>
+            </div>
+    {% endfor %}
+{% endif %}
+        {% if request.user is not None %}
+      <h1 style="color: white;">{{request.user.username}}</h1>
+      {% endif %}
         {% endblock %}
     <center>
 </body>
