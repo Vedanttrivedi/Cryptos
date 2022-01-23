@@ -1,0 +1,94 @@
+{% extends 'user/base.html' %}
+{% load static %}
+<head>
+  <link rel="stylesheet" type="href/css" href="{% static 'blog.css'%}">
+</head>
+  
+{% block content %}
+<h1>{{request.user.username}}</h1>
+<form action="" method="POST">
+  {% csrf_token %}
+<label>crypto currency:</label>
+    <select id="browsers" name="crypto">
+
+      {% if  request.session.currency == 'bitcoin' %}
+
+          <option value="bitcoin">Bitcoin</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="dogecoin">Dogecoin</option>
+          <option value="litecoin">Litecoin</option>
+
+      {% endif  %}
+
+      {% if request.session.currency == 'ethereum' %}
+
+          <option value="ethereum">Ethereum</option>
+          <option value="bitcoin">Bitcoin</option>
+          <option value="dogecoin">Dogecoin</option>
+          <option value="litecoin">Litecoin</option>
+
+      {% endif  %}
+
+      {% if  request.session.currency == 'dogecoin' %}
+
+          <option value="dogecoin">Dogecoin</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="bitcoin">Bitcoin</option>
+          <option value="litecoin">Litecoin</option>
+
+      {% endif  %}
+
+      {% if  request.session.currency == 'litecoin' %}
+
+          <option value="litecoin">Litecoin</option>
+          <option value="dogecoin">Dogecoin</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="bitcoin">Bitcoin</option>
+
+      {% endif  %}
+      <input type="number" name="cryptoValue" value="{{request.session.currencyvalue}}">
+      <br>
+
+    <label>Country currency:</label>
+    <select id="browsers" name="country">
+
+      {% if  request.session.country == 'inr' %}
+        <option value="inr">Indian Rupee</option>
+        <option value="usd">United States Dollar</option>
+        <option value="gbp">British Pound</option>
+        <option value="rub">Russian Ruble</option>
+      {% endif  %}
+
+      {% if  request.session.country == 'usd' %}
+        <option value="usd">United States Dollar</option>
+        <option value="inr">Indian Rupee</option>
+        <option value="gbp">British Pound</option>
+        <option value="rub">Russian Ruble</option>
+      {% endif  %}
+
+      {% if  request.session.country == 'gbp' %}
+        <option value="gbp">British Pound</option>
+        <option value="usd">United States Dollar</option>
+        <option value="inr">Indian Rupee</option>
+        <option value="rub">Russian Ruble</option>
+      {% endif  %}
+
+      {% if  request.session.country == 'rub' %}
+        <option value="rub">Russian Ruble</option>
+        <option value="inr">Indian Rupee</option>
+        <option value="gbp">British Pound</option>
+        <option value="usd">United States Dollar</option>
+      {% endif  %}
+      
+      </select>
+      <input type="number" name="countryValue" value="{{request.session.countryvalue}}">
+      <br><br><br>
+      <input type="submit" value="calculate">
+    </form>
+      
+      
+       
+
+        
+     
+{% endblock %}

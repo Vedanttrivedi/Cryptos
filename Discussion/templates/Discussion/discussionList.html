@@ -1,0 +1,24 @@
+{% extends 'user/base.html' %}
+{% load static %}
+<head>
+  <link rel="stylesheet" type="href/css" href="{% static 'blog.css'%}">
+</head>
+  
+{% block content %}
+  <div style="float:right;">
+    <a href="{% url 'discussionCreatePage' %}" class="btn btn-outline-success" style="font-size: 25px;color: orange;">Create</a>
+  </div>
+  <br><br><br><br>
+        {% if questions %}
+          {% for question in questions %}
+            
+                <a href="/discussion/{{question.id}}/" style="text-decoration: none;">
+                  <h1 style="color:white;">{{question.title}}</h1>
+                
+              </a>
+          
+            <p style="color:yellow;float: right;">{{question.user_id.username}}</p>
+            <hr style="color:orangered;" size="5">
+          {% endfor %}
+        {% endif %}
+{% endblock %}

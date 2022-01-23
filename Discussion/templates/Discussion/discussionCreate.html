@@ -1,0 +1,14 @@
+{% extends 'user/base.html' %}
+{% block content %}
+<h1 style="color:orange;">Post Question To Start Discussion</h1>
+<form role = "form" method="POST" enctype="multipart/form-data" action="{% url 'discussionCreatePage' %}">
+    {% csrf_token %}
+    <div class = "form-group">
+       <label for = "name">Title</label>
+       <input type = "text" class = "form-control" placeholder = "Title" name="title">
+    </div>
+    <br><br>
+      <input type="submit" value="Post" class="btn btn-outline-success">
+ </form>
+
+{% endblock %}
