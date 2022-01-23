@@ -1,6 +1,7 @@
 {% extends 'user/base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'user/upStyle.css' %}">
     <form class = "shadow-pop-tr" action="/user/register/" method="POST">
       {% csrf_token %}
         <table class="tt">

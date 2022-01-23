@@ -1,6 +1,7 @@
 {% extends 'user/base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'user/upStyle.css' %}">
     <form class = "shadow-pop-tr" action="/user/login/" method="POST">
       {% csrf_token %}
         <table class="tt" cellpadding="0">
@@ -16,7 +17,7 @@
             <div class='g-sign-in-button'>
                 <div class=content-wrapper>
                     <div class='logo-wrapper'>
-                      <a href="/accounts/google/login/?process=login"><img src='{% static "user/g-logo.png" %}'></a>
+                      <a href="/accounts/google/login/?process=login"><img src='{% static "user/g-logo.png" %}' height="20px" width="20px"></a>
                     </div>
                     <span class='text-container'>
                   <span >Sign in with Google</span>
@@ -43,6 +44,7 @@
                             
                            
                         </tr>
+                        <tr><td><span><a href="#"><i style="color: orange; text-decoration: none;">Forgot Password</i></a></span></td></tr>
                     </table>
                 </td>
                
