@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'user',
     'blog',
     'Discussion',
+    'Currency',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

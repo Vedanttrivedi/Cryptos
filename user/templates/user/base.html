@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'user/nav.css' %}">  
 
     <script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>    
 <body>
 
@@ -28,7 +29,7 @@
               <a href="#"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
             </li>
             <li class="active">
-              <a href="ll.html"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
+              <a href="{% url 'discussionListPage' %}"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
             </li>
             <li class="active">
               <a href="#"><i class="far fa-newspaper"></i><text style="color: white;">News</text></a>
@@ -37,7 +38,7 @@
                 <a href="{% url 'blogListPage' %}"><i class="fas fa-feather-alt"></i><text style="color: white;">Blog</text></a>
               </li>
               <li class="active">
-                <a href="#"><i class="fas fa-money-check-alt"></i><text style="color: white;">Converter</text></a>
+                <a href="{% url 'currency converter' %}"><i class="fas fa-money-check-alt"></i><text style="color: white;">Converter</text></a>
               </li>
           </ul>
         </aside>
@@ -49,9 +50,8 @@
                 <a href="#" class="navbar-brand" id="sidebar-toggle" ><i class="fas fa-bars"></i></a>
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
-                <a href="{% url 'registerPage' %}" class="navbar-brand" id="sidebar-toggle" style="float: right;text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;">Signin/Signup</abbr></text></a>
-
+                <a href="{% url 'discussionListPage' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
+               
               </div>
             </div>
           </nav>

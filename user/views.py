@@ -2,7 +2,7 @@ from django.shortcuts import render, resolve_url,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, logout
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -14,6 +14,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
@@ -64,8 +65,10 @@ def register(request):
         return redirect("/user/login")
     return render(request,"user/register.html")
 
-
-
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('loginPage')
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
