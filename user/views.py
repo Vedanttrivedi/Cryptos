@@ -2,7 +2,7 @@ from django.shortcuts import render, resolve_url,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import login
+from django.contrib.auth import login as auth_login, logout
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -13,6 +13,8 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
@@ -20,16 +22,21 @@ def home(request):
     
 def login(request):
     if request.method=="POST":
-        name = request.POST["username"]
-        password =make_password( request.POST["password"])
-        user = User.objects.filter(username=name,password=password)
-        user1 =  User.objects.filter(email=name,password=password)
+        name = request.POST["username"].lower()
+        password =request.POST["password"]
+        
+        user = User.objects.filter(username=name,password=password).first()
+        user1 =  User.objects.filter(email=name,password=password).first()
         if  user is not None:
-            login(request,user)
-            return HttpResponse(f"{user.username}")
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            auth_login(request,user)
+            messages.success(request,"Logged In")
+            return redirect("home page")
         elif  user1 is not None:
-            login(request,user1)
-            return HttpResponse(f"{user1.username}")
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            auth_login(request,user1)
+            messages.success(request,"Logged In")
+            return redirect("home page")
         if True:
             return redirect("/user/login")
     return render(request,"user/login.html")
@@ -40,18 +47,28 @@ def register(request):
     if request.method=="POST":
         firstname = request.POST["firstname"]
         lastname = request.POST["lastname"]
-        username = request.POST["username"]
+        username = request.POST["username"].lower()
         email = request.POST["email"]
-        password = make_password(request.POST["password"])
-        conpassword = make_password(request.POST["conpassword"])
+        if request.POST["password"] != request.POST["conpassword"]:
+            messages.info(request,"Password And Confirm Password Must Be Same")
+            return redirect('registerPage')
+        userByname = User.objects.filter(username=username).first()
+        userBymail = User.objects.filter(email=email).first()
+        if userBymail is not None or userByname is not None:
+            messages.info(request,"Username Or Email Already Taken! Try Different")
+            return redirect('registerPage')
+        password = request.POST["password"]
         user=  User(first_name=firstname,last_name=lastname,email=email,password=password,username=username)
         user.is_active = True
         user.save()
+        messages.success(request,f"Hey {user.username} Your Account Is Created.You Can Login Now")
         return redirect("/user/login")
     return render(request,"user/register.html")
 
-
-
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('loginPage')
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)

@@ -18,12 +18,19 @@ from django.urls import path,include
 from user import views as user_views
 from django.contrib.auth import views as auth_views
 from blog import views as blog_views
+from Currency import views as cu_views
 urlpatterns = [
     path('',user_views.home,name="home page"),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    path('converter/',cu_views.converter,name="currency converter"),
+    path('news/',cu_views.getNews,name="mainnews"),
+    path("coinnews/<currency>",cu_views.currencyNews,name="currencyNews"),
+    path('session/',cu_views.printSession,name="session values"),
+    
     path('user/',include('user.urls')),
     path('blog/',include("blog.urls")),
+    path('discussion/',include("Discussion.urls")),
     path('password-reset/',
     user_views.password_reset_request,name="password_reset"),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='user/password/password_reset_done.html'), name='password_reset_done'),

@@ -1,0 +1,24 @@
+{% extends "user/base.html" %}
+{% load static %}
+  
+      {% block content %}
+      <div style="float:right;">
+        <a href="{% url 'blogCreatePage' %}" class="btn btn-outline-success" style="font-size: 25px;color: orange;">Create</a>
+      </div>
+            {% if blogs %}
+              {% for blog in blogs%}
+                
+                    <a href="/blog/{{blog.id}}/" style="text-decoration: none;">
+                      <h1 style="color:white;">{{blog.title}}</h1>
+                      
+                    
+                  </a>
+              
+                <p style="color:yellow;float: right;">{{blog.user_id.username}}</p>
+                <hr style="color:orangered;" size="10">
+              {% endfor %}
+            {% endif %}
+    {% endblock %}
+
+
+

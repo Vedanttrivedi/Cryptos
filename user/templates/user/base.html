@@ -6,8 +6,9 @@
    
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'user/nav.css' %}">  
-
+    <link rel="stylesheet" href="{% static 'user/blog.css' %}">
     <script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>    
 <body>
 
@@ -23,13 +24,13 @@
               <text style="color: white; margin-left: 50px;">Main Menu</text>
             </li>
             <li class="active">
-              <a href="#"><i class="fa fa-home"></i><text style="color: white;">Home</text></a>
+              <a href="{% url 'home page' %}"><i class="fa fa-home"></i><text style="color: white;">Home</text></a>
             </li>
             <li class="active">
               <a href="#"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
             </li>
             <li class="active">
-              <a href="ll.html"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
+              <a href="{% url 'discussionListPage' %}"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
             </li>
             <li class="active">
               <a href="#"><i class="far fa-newspaper"></i><text style="color: white;">News</text></a>
@@ -38,7 +39,7 @@
                 <a href="{% url 'blogListPage' %}"><i class="fas fa-feather-alt"></i><text style="color: white;">Blog</text></a>
               </li>
               <li class="active">
-                <a href="#"><i class="fas fa-money-check-alt"></i><text style="color: white;">Converter</text></a>
+                <a href="{% url 'currency converter' %}"><i class="fas fa-money-check-alt"></i><text style="color: white;">Converter</text></a>
               </li>
           </ul>
         </aside>
@@ -48,11 +49,10 @@
             <div class="container-fluid">
               <div class="navbar-header">
                 <a href="#" class="navbar-brand" id="sidebar-toggle" ><i class="fas fa-bars"></i></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
+                <a href="{% url 'home page' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
                 <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
-                <a href="{% url 'registerPage' %}" class="navbar-brand" id="sidebar-toggle" style="float: right;text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;">Signin/Signup</abbr></text></a>
-
+                <a href="{% url 'discussionListPage' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
+               
               </div>
             </div>
           </nav>
@@ -69,7 +69,16 @@
       </div>
     <center>
         {% block content %}
-
+        {% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-{{ msg.tags }}">
+            <p style="color: rgb(219, 95, 13);">{{msg}}</p>
+            </div>
+    {% endfor %}
+{% endif %}
+        {% if request.user is not None %}
+      <h1 style="color: white;">{{request.user.username}}</h1>
+      {% endif %}
         {% endblock %}
     <center>
 </body>

@@ -8,6 +8,14 @@
         width: 200;
 
     }
+    input[type="password"]{
+      border: 2px solid orange;
+      box-sizing: border-box;
+      margin: 8px 0;
+      padding: 10px 10px;
+      width: 200;
+
+  }
     form{
         width: 550px;
         background-color: white;

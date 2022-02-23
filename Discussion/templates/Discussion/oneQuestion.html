@@ -1,0 +1,48 @@
+
+{% extends 'user/base.html' %}{% load static %}
+{% block content %}
+<div style="margin-left: 100px;">
+{% if messages %}
+    {% for msg in messages %}
+        <h1 style="color:chocolate;">{{msg}}</h1>
+        {% endfor %}
+    {% endif %}
+{%  if question %}
+        <h1 style="color:rgb(156, 101, 101);">{{question.title}}</h1>
+        <br><br><br><br><br><br><br>
+        <p style="color: brown;font-size: 20px;">Answers </p><br><br>
+        <form action="/discussion/answer/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="number" hidden name="questionid" value="{{question.id}}">
+            <input type="text" placeholder="Your Answer" name="text"><br>
+            <div class="file-field">
+                <div class="btn btn-primary btn-sm float-left">
+                  <span>Image </span>
+                  <input type="file" name="image">
+                </div>
+              </div><br><br>
+            <input type="submit" value="Post">
+        </form>
+        <div>
+            {% for com in answers %}
+                <div style="padding: 5px;border-bottom: 1px solid orange;">
+                    <p style="color:orangered;">{{com.body}}</p>
+                    <div style="display: flex;margin-left: 200px;">
+                        <p style="color:yellow;margin-right: 10px;">{{com.date}}</span>
+                        <img id="like" src="{% static 'user/download.png' %}" width="10" height="10" onclick="likeAnswer(this);" data-catid="{{com.id}}">
+                        <p style="margin-left: 10px;">{{com.vote_count}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {%  endif %}
+</div>
+<script >
+    $('#like').click(function(){
+        console.log("function called");
+    $(this).next().text("noice garry");
+    console.log(($(this)).next());
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "user/base.html" %}
+{% load static %}
+      <center>
+{% block content %}
+{% if messages %}
+    {% for msg in messages %}
+        <h1 style="color:chocolate;">{{msg}}</h1>
+        {% endfor %}
+    {% endif %}
+{%  if blog %}
+        <h1 style="color:brown;">{{blog.title}}</h1>
+        <h1 style="color:orange;">{{blog.content}}</h1>
+        <br><br><br><br><br><br><br>
+        <p style="color: brown;font-size: 20px;">Comments </p><br><br>
+        <form action="/blog/comment/" method="POST">
+            {% csrf_token %}
+            <input type="number" hidden name="blogid" value="{{blog.id}}">
+            <input type="text" placeholder="Your Comment" name="text"><br>
+            <input type="submit" value="Post">
+        </form>
+        <div>
+            {% for com in comments %}
+                <div style="padding: 5px;border-bottom: 1px solid orange;">
+                    <p style="color:orangered;">{{com.comment_text}}</p>
+                    <span style="color:yellow;">{{com.date}}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {%  endif %}
+{% endblock %}
+<center>
+</body>
+<script src="{% static 'user/nav.js' %}"></script>
+</html> 
