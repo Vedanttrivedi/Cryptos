@@ -1,4 +1,6 @@
-{% extends 'user/base.html' %}
+{% extends "user/base.html" %}
+{% load static %}
+      <center>
 {% block content %}
 {% if messages %}
     {% for msg in messages %}
@@ -7,6 +9,7 @@
     {% endif %}
 {%  if blog %}
         <h1 style="color:brown;">{{blog.title}}</h1>
+        <h1 style="color:orange;">{{blog.content}}</h1>
         <br><br><br><br><br><br><br>
         <p style="color: brown;font-size: 20px;">Comments </p><br><br>
         <form action="/blog/comment/" method="POST">
@@ -25,3 +28,7 @@
         </div>
     {%  endif %}
 {% endblock %}
+<center>
+</body>
+<script src="{% static 'user/nav.js' %}"></script>
+</html> 
