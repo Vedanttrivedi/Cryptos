@@ -1,21 +1,39 @@
 {% extends "user/base.html" %}
 {% load static %}
-  
+  {% load humanize %}
       {% block content %}
+      <link rel="stylesheet" href="{%  static  'user/blog.css'  %}">
+      <link rel="stylesheet" href="{%  static  'user/createbutton.css'  %}">
+      <script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
       <div style="float:right;">
-        <a href="{% url 'blogCreatePage' %}" class="btn btn-outline-success" style="font-size: 25px;color: orange;">Create</a>
+        <a href="{% url 'blogCreatePage' %}" ><button class="button">Create +
+         
+          <span class="icon-right after"></span>
+        </button>
+        </a>
       </div>
             {% if blogs %}
               {% for blog in blogs%}
                 
-                    <a href="/blog/{{blog.id}}/" style="text-decoration: none;">
-                      <h1 style="color:white;">{{blog.title}}</h1>
-                      
-                    
-                  </a>
-              
-                <p style="color:yellow;float: right;">{{blog.user_id.username}}</p>
-                <hr style="color:orangered;" size="10">
+              <div class="blog-card">
+                <div class="meta">
+                  <div class="photo" style="background-image: url('{{blog.image.url}}')"></div>
+                  <ul class="details">
+                    <li class="author"><a href="#">{{blog.user_id.username}}</a></li>
+                    <li class="date">{{blog.date |naturaltime}} </li>
+                  
+                  </ul>
+                </div>
+                <div class="description">
+                  <h1>{{blog.title}}</h1>
+                  
+                  <p>{{blog.slug}}....</p>
+                  <p class="read-more">
+                    <a href="/blog/{{blog.id}}/">Read More</a>
+                  </p>
+                </div>
+              </div>
+                
               {% endfor %}
             {% endif %}
     {% endblock %}

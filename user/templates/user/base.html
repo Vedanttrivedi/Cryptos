@@ -12,10 +12,10 @@
 </head>    
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
 
         <aside id="sidebar-wrapper">
-           <h2 style="color:white; margin-left:20px;"><img src="{% static 'user/logo.png' %}" alt="logo" width="40px" height="40px"></h2>
+           <h2 style="color:white; margin-left:5px; margin-top: 10px;"><img src="{% static 'user/logoo.gif' %}" alt="logo" width="70px" height="50px"></h2>
           <div class="sidebar-brand">
            <h2>CRYPTOS</h2>
           </div>
@@ -24,16 +24,16 @@
               <text style="color: white; margin-left: 50px;">Main Menu</text>
             </li>
             <li class="active">
-              <a href="{% url 'home page' %}"><i class="fa fa-home"></i><text style="color: white;">Home</text></a>
+              <a href="{% url 'home page' %}"><i class="fa fa-home"></i><text style="color: orange;">Home</text></a>
             </li>
             <li class="active">
-              <a href="#"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
+              <a href="{% url 'prediction' %}"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
             </li>
             <li class="active">
               <a href="{% url 'discussionListPage' %}"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
             </li>
             <li class="active">
-              <a href="#"><i class="far fa-newspaper"></i><text style="color: white;">News</text></a>
+              <a href="{% url 'mainnews' %}"><i class="far fa-newspaper"></i><text style="color: white;">News</text></a>
             </li>
             <li class="active">
                 <a href="{% url 'blogListPage' %}"><i class="fas fa-feather-alt"></i><text style="color: white;">Blog</text></a>
@@ -50,8 +50,14 @@
               <div class="navbar-header">
                 <a href="#" class="navbar-brand" id="sidebar-toggle" ><i class="fas fa-bars"></i></a>
                 <a href="{% url 'home page' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;" ><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="HOME"><i class="fas fa-home"></i></abbr></text></a>
-                <a href="#" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
+                <a href="{% url 'mainnews' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="NEWS"><i class="far fa-newspaper"></i></abbr></text></a>
                 <a href="{% url 'discussionListPage' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px;"><abbr title="Discussion Forum"><i class="fas fa-users"></i></abbr></text></a>
+                {% if request.user.username is not None %}
+                <a href="#" style="color: white; float: right;" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;">{{request.user.username}}</a>
+                <a href="{% url 'logoutPage' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px; float: right;">Logout</text></a>
+                {% else %}
+                <a href="{% url 'loginPage' %}" class="navbar-brand" id="sidebar-toggle" style="text-decoration: none;"><text style="font-size:15px; margin: 0 15px 0 15px; float: right;">Login/SignUp</text></a>
+                {% endif %}
                
               </div>
             </div>
@@ -74,11 +80,11 @@
         <div class="alert alert-{{ msg.tags }}">
             <p style="color: rgb(219, 95, 13);">{{msg}}</p>
             </div>
+        
     {% endfor %}
 {% endif %}
-        {% if request.user is not None %}
-      <h1 style="color: white;">{{request.user.username}}</h1>
-      {% endif %}
+            <div><h1>home page</h1></div>
+      
         {% endblock %}
     <center>
 </body>

@@ -31,8 +31,7 @@ class DisAnswer(models.Model):
             img.thumbnail(output)
             img.save(self.image.path)
         
-        up = UpVotes(answer=self)
-        up.save()
+        
 
 class UpVotes(models.Model):
     like = models.ManyToManyField(User)

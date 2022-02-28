@@ -50,6 +50,8 @@ def answer(request):
             if str(images).endswith(".jpg") or  str(images).endswith(".png") or  str(images).endswith(".jpeg"):
                 answer = DisAnswer(body=text,question_id=question,user_id=request.user,image=images)
                 answer.save()
+                up = UpVotes(answer=answer)
+                up.save()
             else:
                 messages.info(request,"Invalid image format..supported formats=[jpg,png,jpeg]")
                 return redirect(f'/discussion/{question.id}')
@@ -57,6 +59,8 @@ def answer(request):
         else:
             answer = DisAnswer(body=text,question_id=question,user_id=request.user)
             answer.save()
+            up = UpVotes(answer=answer)
+            up.save()
         messages.info(request,"Answer Posted")
         return redirect(f'/discussion/{question.id}')
     return redirect(f'/discussion/')
@@ -66,14 +70,27 @@ def answer(request):
 def likeAnswer(request):
     if request.method=="POST":
         ansid = int(request.POST["ansid"])
+        qid = int(request.POST["qid"])
+        
         disans = DisAnswer.objects.get(id=ansid)
-        upvote = UpVotes.objects.get(id=disans.id)
+        
+        upvote = UpVotes.objects.get(answer=disans)
+        #return HttpResponse(request.POST["ansid"])
         count = 0
+       
         if request.user in upvote.like.all():
             upvote.like.remove(request.user)
-            upvote.save()
+            #upvote.save()
             count = upvote.like.count()
+            disans.vote_count = count
+            disans.save()
+            return  redirect(f'/discussion/{qid}')
         else:
             upvote.like.add(request.user)
+            #upvote.save()
             count = upvote.like.count()
+            
+            disans.vote_count = count
+            disans.save()
+            return  redirect(f'/discussion/{qid}')
         return HttpResponse(count)

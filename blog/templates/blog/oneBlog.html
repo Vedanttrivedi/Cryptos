@@ -1,29 +1,50 @@
 {% extends "user/base.html" %}
 {% load static %}
+  {% load humanize %}
       <center>
 {% block content %}
+<link rel="stylesheet" href="{%  static  'user/oneblog.css'  %}">
+<script src="https://kit.fontawesome.com/196c976218.js" crossorigin="anonymous"></script>
 {% if messages %}
     {% for msg in messages %}
         <h1 style="color:chocolate;">{{msg}}</h1>
         {% endfor %}
     {% endif %}
 {%  if blog %}
+        <div class="oneblog">
         <h1 style="color:brown;">{{blog.title}}</h1>
         <h1 style="color:orange;">{{blog.content}}</h1>
+        <img src="{{blog.image.url}}" alt="image">
+        <br><br>
+
+
+    </div>
         <br><br><br><br><br><br><br>
-        <p style="color: brown;font-size: 20px;">Comments </p><br><br>
+    
+    <div class="com">
+        <p style="color: brown;font-size: 30px; margin-left: -90%; ">Comments </p><br><br>
+        <hr style="margin-top: -60px; width: 60%; margin-right: 75%;">
+    </div>
         <form action="/blog/comment/" method="POST">
             {% csrf_token %}
-            <input type="number" hidden name="blogid" value="{{blog.id}}">
-            <input type="text" placeholder="Your Comment" name="text"><br>
-            <input type="submit" value="Post">
+            <div class="col-3 input-effect">
+                <input type="number" hidden name="blogid" value="{{blog.id}}">
+                <input type = "text" class = "effect-20" placeholder = "" name="text">
+              <label for = "name" class="lab">Your Comment: </label>
+              <span class="focus-border"></span>
+              <br> <br>
+              <input type="submit" value="Post" class="custom-btn btn-5">
+           </div>
+            
         </form>
         <div>
             {% for com in comments %}
-                <div style="padding: 5px;border-bottom: 1px solid orange;">
+                <div style="padding: 5px;border: 1px solid orange; border-radius: 10px; width: 70%;">
+                    <p style="color: wheat;">{{blog.user_id.username}}</p>
                     <p style="color:orangered;">{{com.comment_text}}</p>
-                    <span style="color:yellow;">{{com.date}}</span>
+                    <span style="color:yellow;">{{com.date  |naturaltime }}</span>
                 </div>
+                <br>
             {% endfor %}
         </div>
     {%  endif %}

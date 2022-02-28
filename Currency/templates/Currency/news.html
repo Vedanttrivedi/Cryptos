@@ -1,15 +1,59 @@
-{% extends 'user/base.html' %}
+{% extends "user/base.html" %}
 {% load static %}
+  
+{% load humanize %}
+      {% block content %}
+      <link rel="stylesheet" href="{%  static  'user/nw.css'  %}">
+      <h3 style="padding-left: 25px; color: rgb(201, 201, 201);">Top Trending</h3>
+      {% if data %}
+      {% for news in data %}
+      <div class="scroll">
+        <div class="container one">
+          
+          <div class="grid-cards">
+            <div class="card">
+              <!--<img src="https://images.unsplash.com/photo-1507206130118-b5907f817163?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjIzMzQzMjIz&ixlib=rb-1.2.1&q=80&w=600" alt="img-1" title="card image">-->
+              <div class="">
+                <h2 style="float: left; margin-left: 1%;"><img src="{{news.image}}" alt="logo" ></h2>
+                <h3 class="title-card">
+                    {{news.title}}
+                </h3>
+                <br>
+                <p>{{news.desc}}</p>
+              </div>
+              <div class="card-footer-2" style="float: left;">
+                <a href="#" style="color: #fff; text-decoration: none;">{{news.media}} </a>
+              </div>
+              <div class="card-footer">
+                <a href="#" target="_blank" style="color:#fff;">{{news.date |naturaltime }}</a>
+              </div>
+              <div class="card-footer">
+                <a href="{{news.link}}" target="_blank">Click here</a>
+              </div>
+            </div>
+           
+          </div>
+          </div>
+        </div>
+          
+        {% endfor %}
+        {% endif %}
+        
+      
+    {% endblock %}
 
-{% block content %}
-<style>
-    a{color:white;}
-</style>
-   <a href="">Bitcoin</a>
-   <a href="">Litecoin</a>
-   <a href="">Ethereum</a>
-   <a href="">Dogecoin</a>
-   <a href="">CoinCoin</a>
-   
 
-{% endblock %}
+
+
+<!--
+{% if data %}
+    {% for news in data %}
+        <h2>{{news.title}}</h2>
+        <img src="{{news.image}}">
+        <a href="{{news.href}}">{{news.desc}}</a>
+        <p style="float:right;">By..{{news.media}}</p>
+        <p>{{news.date}}</p>
+    {% endfor %}
+    {% else %}
+    <h1>Something went wrong. Reload the Page</h1>
+    {% endif %}-->

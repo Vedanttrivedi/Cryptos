@@ -2,15 +2,19 @@
 {% load static %}
       
       {% block content %}
-
+      
+      <link rel="stylesheet" href="{%  static  'user/cal.css'  %}">
+      
       <h1 style="color: orange;">Exchange Rate Calculator</h1>
           <p style="color: rgb(201, 201, 201);">Choose the currency and the amounts to get the exchange rate</p>
+          <center>
           <div class="container">
            
           <form action="" method="POST">
         {% csrf_token %}
-      <label style="color: azure;">crypto currency:</label>
+      
       <div class="currency">
+        <label style="margin-left: -80%; color: orange; font-size: 25px;">Select Crypto Currency:</label><br><br>
           <select id="currency-one" name="crypto">
       
             {% if  request.session.currency == 'bitcoin' %}
@@ -24,7 +28,7 @@
       
             {% if request.session.currency == 'ethereum' %}
       
-                <option value="ethereum">Ethereum</option>
+                <option value="ethereum" >Ethereum </option>
                 <option value="bitcoin">Bitcoin</option>
                 <option value="dogecoin">Dogecoin</option>
                 <option value="litecoin">Litecoin</option>
@@ -35,7 +39,7 @@
       
                 <option value="dogecoin">Dogecoin</option>
                 <option value="ethereum">Ethereum</option>
-                <option value="bitcoin">Bitcoin</option>
+                <option value="bitcoin">Bitcoin </i></option>
                 <option value="litecoin">Litecoin</option>
       
             {% endif  %}
@@ -45,22 +49,22 @@
                 <option value="litecoin">Litecoin</option>
                 <option value="dogecoin">Dogecoin</option>
                 <option value="ethereum">Ethereum</option>
-                <option value="bitcoin">Bitcoin</option>
+                <option value="bitcoin">Bitcoin </option>
       
             {% endif  %}
-            <input type="number" name="cryptoValue" value="{{request.session.currencyvalue}}">
+            <input type="text" name="cryptoValue" value="{{request.session.currencyvalue}}" style="margin-left: 10%;">
             <br>
       </select>
       </div>
       <div class="currency">
-          <label style="color: azure;">Country currency:</label>
+          <label style="margin-left: -85%; color: orange; font-size: 25px;" >Select Fiat currency:</label><br><br>
           <select id="currency-two" name="country">
       
             {% if  request.session.country == 'inr' %}
-              <option value="inr">Indian Rupee</option>
-              <option value="usd">United States Dollar</option>
-              <option value="gbp">British Pound</option>
-              <option value="rub">Russian Ruble</option>
+              <option value="inr">Indian Rupee </option>
+              <option value="usd">United States Dollar </option>
+              <option value="gbp">British Pound </option>
+              <option value="rub">Russian Ruble </option>
             {% endif  %}
       
             {% if  request.session.country == 'usd' %}
@@ -85,13 +89,14 @@
             {% endif  %}
             
             </select>
+            <input type="text" name="countryValue" value="{{request.session.countryvalue}}" style="margin-left: 10%;">
           </div>
-            <input type="number" name="countryValue" value="{{request.session.countryvalue}}">
+           
             <br><br><br>
-            <input type="submit" value="calculate">
+            <input type="submit" value="Calculate" class="but">
           </form>
           </div>
-            
+        </center>
             
              
       

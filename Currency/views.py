@@ -5,13 +5,17 @@ import requests
 from django.contrib.auth.decorators import login_required
 from bs4 import BeautifulSoup
 from GoogleNews import GoogleNews
-
+from newsapi import NewsApiClient
 from Currency.models import NewsModel
+import datetime as dt
+
 googlenews = GoogleNews()
 def changePrice(oldPrice,newPrice):
     if oldPrice!=newPrice:
         return True
     return False
+
+apiKey = "d8e177aeb567448ca15f9415d0635bbe"
 
 @login_required
 def converter(request):
@@ -45,7 +49,6 @@ def converter(request):
         request.session["currencyvalue"] = btcprice
         request.session["countryvalue"] =conprice
         return redirect('currency converter')
-    
     if not "currency" in request.session.keys():
         #user visiting this page for first time
         path =  f"https://api.coingecko.com/api/v3/coins/bitcoin"
@@ -71,21 +74,51 @@ def printSession(request):
         request.session["country"] = "rub"
     return HttpResponse(request.session["country"])
 
-
+@login_required
 def getNews(request):
-    return render(request,"Currency/news.html")
+    news = NewsApiClient(api_key=apiKey)
+    data = news.get_everything(q="crypto currency",language="en",page_size=20)
+    context={}
+    news = []
+    for i in range(15):
+        title = data["articles"][i]["title"]
+        image = data["articles"][i]["urlToImage"]
+        desc = data["articles"][i]["description"]
+        media = data["articles"][i]["source"]["name"]
+        link = data["articles"][i]["url"]
+        date = data["articles"][i]["publishedAt"]
+        n1 = NewsModel(title,image,desc,media,link,date)
+        news.append(n1)
+    context["data"] = news
+    return render(request,"Currency/news.html",context)
 
+@login_required
 def currencyNews(request,currency):
-    context = {"currency":currency}
-    '''url = f"https://www.google.com/search?q={currency}+news&sxsrf=AOaemvKr6Q3iI_tmk07JEuvNU98R69Y-rg:1642914161562&source=lnms&tbm=nws&sa=X&ved=2ahUKEwiF5vuXjMf1AhVVc3AKHVXECF0Q_AUoAXoECAEQAw&biw=1455&bih=717&dpr=1.1"
-    path = requests.get(url)
-    soup  = BeautifulSoup(path.text,"lxml")
-    context["newscode"] = soup'''
-    googlenews = GoogleNews(lang='en')
-    googlenews.search('Bitcoin')
-    result = googlenews.page_at(1)
+    news = NewsApiClient(api_key=apiKey)
+    data = news.get_everything(q=currency,language="en",page_size=20)
+    context={}
+    news = []
+    for i in range(15):
+        title = data["articles"][i]["title"]
+        image = data["articles"][i]["urlToImage"]
+        desc = data["articles"][i]["description"]
+        media = data["articles"][i]["source"]["name"]
+        link = data["articles"][i]["url"]
+        date = data["articles"][i]["publishedAt"]
+        n1 = NewsModel(title,image,desc,media,link,date)
+        news.append(n1)
+    context["data"] = news
+    context["currency"]= currency.title()
+    return render(request,"Currency/coinnews.html",context)
     
-    #result2 =  googlenews.page_at(2)
+
+def demo():
+    context={"currency":"s"}
+    googlenews = GoogleNews(lang='en')
+    googlenews.search("s")
+    result = googlenews.page_at(1)
+    #return HttpResponse(result)
+    result2 =  googlenews.page_at(2)
     news = []
     for i in result:
         title = i["title"]
@@ -93,7 +126,17 @@ def currencyNews(request,currency):
         desc = i["desc"]
         media = i["media"]
         link = i["link"]
-        n1 = NewsModel(title,image,desc,media,link)
+        date = i["date"]
+        n1 = NewsModel(title,image,desc,media,link,date)
+        news.append(n1)
+    for i in result2:
+        title = i["title"]
+        image = i["img"]
+        desc = i["desc"]
+        media = i["media"]
+        link = i["link"]
+        date = i["date"]
+        n1 = NewsModel(title,image,desc,media,link,date)
         news.append(n1)
     context["data"] = news
     return render(request,"Currency/coinnews.html",context)

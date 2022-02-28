@@ -1,27 +1,54 @@
 {% extends "user/base.html" %}
 {% load static %}
-   
+  
       {% block content %}
+      <link rel="stylesheet" href="{%  static  'user/bcreate.css'  %}">
+      <center>
       <h1 style="color:orange;">Create Blog</h1>
       <form role = "form" method="POST" enctype="multipart/form-data" action="{% url 'blogCreatePage' %}">
           {% csrf_token %}
-          <div class = "form-group">
-             <label for = "name">Title</label>
-             <input type = "text" class = "form-control" placeholder = "Title" name="title">
+          <div class="mahi_holder">
+            <div class="container">
+              <div class="col-3 input-effect">
+               <input type = "text" class = "effect-20" placeholder = "" name="title">
+             <label for = "name" class="lab">Title: </label>
+             <span class="focus-border"></span>
+             
           </div>
-          <div class = "form-group">
-             <label for = "name">Content</label>
-             <textarea name = "content" class = "form-control" rows = "3" placeholder = "Content" maxlength="500"></textarea>
+         
+          
+          <div class = "col-3 input-effect">
+            <textarea name = "content" class = "effect-20" rows = "3" placeholder = "" maxlength="500"></textarea>
+             <label for = "name" class="lab">Content</label>
+            
           </div>
+
           <div class="file-field">
               <div class="btn btn-primary btn-sm float-left">
-                <span>Choose file</span>
-                <input type="file" name="image">
+               <div class = "col-3 input-effect">
+               <div class="image-input">
+                  <input type="file" accept="image/*" id="imageInput" name="image">
+                  <label for="imageInput" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                  <img src="" class="image-preview">
+                  <span class="change-image" style="color: orange;">Choose different image</span>
+                </div>
               </div>
-            </div><br><br>
-            <input type="submit" value="Post" class="btn btn-outline-success">
+              </div>
+            </div><br>
+
+          
+            
+               <input type="submit" value="Post" class="custom-btn btn-5">
+          
+            
+
+           
+         
+         </div>
+      </div>
        </form>
-      
+       <script src="{%  static  'user/bcreate.js'  %}"></script>
+      </center>
       {% endblock %}
     
 
