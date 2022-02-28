@@ -1,0 +1,47 @@
+.container {
+    background-color: #f4f4f4;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 7px -4px 3px rgba(175, 175, 175, 0.5);
+    width: 50%;
+    height: 70%;
+    margin-left: 10%;
+    }
+.container:hover {
+        transform: translate(1px);
+        box-shadow: 7px -4px 7px orange;
+      }
+      .currency {
+        padding: 30px 40px;
+    }
+
+    
+.currency select{
+    border: orange 1px solid;
+    border-radius: 3px;
+    width: 20%;
+    height: 10%;
+    margin-left: -50%;
+}
+.currency select:hover{
+    border: orange 1px solid;
+    background-color: none}
+
+.but{
+    border: orange 1px solid;
+    color: orange;
+    width: 20%;
+    height: 10%;
+    border-radius: 7px;
+    margin-top: -2%;
+}
+.but:hover{
+    
+    color: white;
+    background-color: orange;
+}
+input[type="text"]{
+    border: orange 1px solid;
+    width: 25%;
+    height: 10%;
+}

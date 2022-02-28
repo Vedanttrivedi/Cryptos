@@ -1,0 +1,177 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .one, .three {
+    margin: 30px auto !important;
+  }
+  .scroll {
+    overflow-y: auto;
+    background: #2f323b;
+  }
+  /* ---------------------------- */
+  /* ---------- True Code ---------- */
+  .container {
+    max-width: 1400px;
+    margin: auto;
+    width: 70%;
+  }
+  .container.two .card::after {
+    content: '';
+    width: 80px;
+    height: 80px;
+    background: #fff9d8;
+    position: absolute;
+    top: -30px;
+    border-radius: 35%;
+    left: -20px;
+  }
+  .container .grid-cards {
+    display: flex;
+    justify-content: left;
+    flex: 1;
+    margin: 1rem 0;
+  }
+  @media (max-width: 922px) and (min-width: 601px) {
+    .container .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .container .grid-cards {
+      flex-direction: column;
+    }
+  }
+  .container .grid-cards .card {
+    position: relative;
+    flex: 1;
+    background: #fff;
+    padding: 1rem 1rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 1rem;
+    min-height: 170px;
+    margin: 15px;
+    transition: all ease 0.3s;
+    overflow: hidden;
+    animation: fadeInLeft 1.5s backwards;
+  }
+  .container .grid-cards .card:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .container .grid-cards .card:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .container .grid-cards .card:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .container .grid-cards .card:hover {
+    transform: translateY(-6px);
+    -webkit-transform: translateY(-6px);
+  }
+  .container .grid-cards .card img {
+    aspect-ratio: 1.5625;
+    width: 50%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    position: relative;
+    max-height: 320px;
+    object-fit: cover;
+    box-shadow: 0 6px 16px -7px #aaa;
+  }
+  .container .grid-cards .card .card-body {
+    color: #676767;
+    width: 50%;
+    margin-bottom: 40px;
+    padding: 0 0.8rem;
+    position: relative;
+  }
+  .container .grid-cards .card .card-body .icon {
+    display: flex;
+    width: 50%;
+    text-align: left;
+    padding: 15px 0;
+  }
+  .container .grid-cards .card .card-body .icon i {
+    position: relative;
+    font-size: 25px;
+    transition: 0.5s;
+    line-height: 0;
+    top: -7px;
+    left: -12px;
+    z-index: 2;
+  }
+  .container .grid-cards .card .card-body .icon i::before {
+    background: orange;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .container .grid-cards .card .card-body .icon h3 {
+    margin: -9px 0 0 20px;
+  }
+  .container .grid-cards .card .card-body .title-card {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .container .grid-cards .card .card-body p {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 300;
+  }
+  .container .grid-cards .card .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 1rem);
+  }
+  .container .grid-cards .card .card-footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+    color: #fff;
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    width: 36%;
+    height: 40px;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+  .card-footer-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+    color: #fff;
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    width: 36%;
+    height: 40px;
+   
+    position: absolute;
+    bottom: 0;
+    width: calc(30% - 1rem);
+    text-decoration: none;
+    margin-left: -1.5%;
+    
+  }
+  .container .grid-cards .card .card-footer a:hover {
+    filter: brightness(0.98);
+  }
+  @keyframes fadeInLeft {
+    0% {
+      transform: translate(-100%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
