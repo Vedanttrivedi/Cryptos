@@ -14,7 +14,7 @@ class DisQuestion(models.Model):
 class DisAnswer(models.Model):
     question_id = models.ForeignKey(DisQuestion,on_delete=models.CASCADE,null=False)
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=False)
-    image = models.ImageField(default="media/answer.jpg",upload_to="media/discussion-pics",null=True)
+    image = models.ImageField(default="media/answer.jpg",upload_to="discussion-pics",null=True)
     body = models.TextField(max_length=500)
     date = models.DateTimeField(default=datetime.now)
     vote_count = models.IntegerField(default=0)

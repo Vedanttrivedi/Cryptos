@@ -8,16 +8,19 @@ from prediction import views as pd_views
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
-    path('',user_views.home,name="home page"),
+    path('',pd_views.home,name="home page"),
+    path('<coin>',pd_views.oneCoin,name="coin page"),
+    
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    path("onecoin/<coin>",pd_views.oneCoin,name="oneCoin"),
     path('converter/',cu_views.converter,name="currency converter"),
     path('news/',cu_views.getNews,name="mainnews"),
     path("coinnews/<currency>",cu_views.currencyNews,name="currencyNews"),
     path('session/',cu_views.printSession,name="session values"),
     path('user/',include('user.urls')),
     path('blog/',include("blog.urls")),
-    path('prediction/',pd_views.predict,name="prediction"),
+    #path('prediction/',pd_views.predict,name="prediction"),
     path('discussion/',include("Discussion.urls")),
     path('password-reset/',
     user_views.password_reset_request,name="password_reset"),

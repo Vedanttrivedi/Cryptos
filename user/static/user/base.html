@@ -26,7 +26,9 @@
             <li class="active">
               <a href="{% url 'home page' %}"><i class="fa fa-home"></i><text style="color: orange;">Home</text></a>
             </li>
-           
+           <!-- <li class="active">
+              <a href="{% url 'prediction' %}"><i class="fas fa-chart-line"></i><text style="color: white;">Prediction And Analysis</text></a>
+            </li>-->
             <li class="active">
               <a href="{% url 'discussionListPage' %}"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
             </li>
@@ -110,7 +112,7 @@
                               <div class="icon-after cc BTC-alt"></div>
                               <i class="pull-left cc BTC-alt icon-md icon-white mt-10"></i>
                               <div class="stats">
-                                  <h3 class="color-white mb-5" style="color: white;">${{current_price}} BTC</h3>
+                                  <h3 class="color-white mb-5" style="color: white;">1.003747 BTC</h3>
                                   
                               </div>
                           </div></a>
@@ -120,7 +122,7 @@
                               <div class="icon-after cc DASH-alt"></div>
                               <i class="pull-left cc DASH-alt icon-md icon-primary mt-10"></i>
                               <div class="stats">
-                                  <h3 class="mb-5" style="color: white;">${{eth}} ETH</h3>
+                                  <h3 class="mb-5" style="color: white;">5.19034 ETH</h3>
                                  
                               </div>
                           </div></a> 
@@ -130,7 +132,7 @@
                               <div class="icon-after cc LTC-alt"></div>
                               <i class="pull-left cc LTC-alt icon-md icon-primary mt-10"></i>
                               <div class="stats">
-                                  <h3 class="mb-5" style="color: white;">${{ltc}} LTC</h3>
+                                  <h3 class="mb-5" style="color: white;">12.60349 LTC</h3>
                                 
                               </div>
                           </div>
@@ -165,7 +167,7 @@
     <div style="margin-top: 20%; background-color: white; width: 20%; height: 20%; margin-left: 70%;">
     
       <h3 style="color:orange"><img src="{% static 'user/nw1.gif' %}" width="100px" height="100px"><i><u>NEWS</u></i></h3>
-      <a href="http://localhost:8000/coinnews/bitcoin" style="text-decoration: none;"><h4 style="color: orange;"><i><b>News Realted To Bitcoin</b></i></h4></a>
+      <a href="#" style="text-decoration: none;"><h4 style="color: orange;"><i><b>News Realted To Bitcoin</b></i></h4></a>
     </div>
       
       
@@ -173,22 +175,22 @@
       <table class="tab">
         <thead>
             <tr>
-                <th><h1 class="vv">name</h1></th>
-                <th><h1 class="vv">Price $</h1></th>
-                <th><h1 class="vv">High Price $</h1></th>
-                <th><h1 class="vv">Low Price $</h1></th>
-                <th><h1 class="vv">Prediction Price $</h1></th>
+                <th><h1 class="vv">Name</h1></th>
+                <th><h1 class="vv">Price</h1></th>
+                <th><h1 class="vv">High Price</h1></th>
+                <th><h1 class="vv">Low Price</h1></th>
+                <th><h1 class="vv">Prediction Price</h1></th>
                 <th><h1 class="vv">Rank</h1></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="yy"><img src="{{image}}" width="30px" height="30px"> {{name}}</td>
-                <td class="yy"><b style="color: white;">{{current_price}}</b></td>
-                <td class="yy"><b style="color: white;">{{high_price}}</b></td>
-                <td class="yy"><b style="color: white;">{{low_price}}</b></td>
-                <td class="yy"><b style="color: white;">{{predict_price}}</b></td>
-                <td class="yy"><b style="color: white;">{{market_rank}}</b></td>
+                <td class="yy"><img src="{% static 'user/bit.png' %}" width="20px" height="20px"> Bitcoin</td>
+                <td class="yy"><b style="color: white;">$42273.10</b></td>
+                <td class="yy"><b style="color: white;">$47856</b></td>
+                <td class="yy"><b style="color: white;">$40089</b></td>
+                <td class="yy"><b style="color: white;">$46097</b></td>
+                <td class="yy"><b style="color: white;">1</b></td>
             </tr>
             
         </tbody>
@@ -200,12 +202,11 @@
       
       <div>
         <h2 style="color:white; margin-left: -80%;">About:</h2>
-      <h5 style="color:rgb(189, 189, 189); margin-left: 15; text-align: left;"><i>
-          {{about}}
-        <br>
-        </i>
+      <h5 style="color:rgb(189, 189, 189); margin-left: 15; text-align: left;"><i>Bitcoin is a decentralized digital currency, without a central bank or single administrator, <br>
+        that can be sent from user to user on the peer-to-peer bitcoin <br>
+        network without the need for intermediaries.</i>
         <p class="read-more">
-        <a href="https://en.wikipedia.org/wiki/{{name}}" target="_blank">Read More</a>
+        <a href="#">Read More</a>
       </p>
       </h5>
     </div>
