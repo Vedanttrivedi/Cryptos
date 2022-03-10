@@ -26,7 +26,9 @@
             <li class="active">
               <a href="{% url 'home page' %}"><i class="fa fa-home"></i><text style="color: orange;">Home</text></a>
             </li>
-           
+            <li class="active">
+                    <a href="{% url 'analysis page' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i><text style="color: orange;">Analysis</text></a>
+                  </li>
             <li class="active">
               <a href="{% url 'discussionListPage' %}"><i class="fas fa-users"></i><text style="color: white;">Discussion Forum</text></a>
             </li>
@@ -106,34 +108,49 @@
               <div class="content-body">
                   <div class="row">
                       <div class="col-lg-4 col-sm-6 col-xs-12">
-                          <a href="tt.html"><div class="r4_counter db_box has-gradient-to-right-bottom">
+                          <a href="http://localhost:8000/">
+                            {% if not 'litecoin' in request.get_full_path and not 'ethereum' in request.get_full_path %}
+                            <div class="r4_counter db_box has-gradient-to-right-bottom">
+                                {% else %}
+                                <div class="r4_counter db_box">
+                                {% endif %}
                               <div class="icon-after cc BTC-alt"></div>
                               <i class="pull-left cc BTC-alt icon-md icon-white mt-10"></i>
                               <div class="stats">
-                                  <h3 class="color-white mb-5" style="color: white;">${{current_price}} BTC</h3>
+                                  <h3 class="color-white mb-5" style="color: white;">${{first}} BTC</h3>
                                   
                               </div>
                           </div></a>
                       </div>
                       <div class="col-lg-4 col-sm-6 col-xs-12">
-                          <a href="tt.html"><div class="r4_counter db_box">
+                          <a href="http://localhost:8000/coin/ethereum">
+                            {% if 'ethereum' in request.get_full_path %}
+                            <div class="r4_counter db_box has-gradient-to-right-bottom">
+                                {% else %}
+                                <div class="r4_counter">
+                                {% endif %}
                               <div class="icon-after cc DASH-alt"></div>
                               <i class="pull-left cc DASH-alt icon-md icon-primary mt-10"></i>
                               <div class="stats">
-                                  <h3 class="mb-5" style="color: white;">${{eth}} ETH</h3>
+                                  <h3 class="mb-5" style="color: white;">${{second}} ETH</h3>
                                  
                               </div>
                           </div></a> 
                       </div>
                       <div class="col-lg-4 col-sm-6 col-xs-12">
-                          <div class="r4_counter db_box">
+                            <a href="http://localhost:8000/coin/litecoin">
+                                {% if 'litecoin' in request.get_full_path %}
+                                <div class="r4_counter db_box has-gradient-to-right-bottom">
+                                    {% else %}
+                                    <div class="r4_counter">
+                                    {% endif %}
                               <div class="icon-after cc LTC-alt"></div>
                               <i class="pull-left cc LTC-alt icon-md icon-primary mt-10"></i>
                               <div class="stats">
-                                  <h3 class="mb-5" style="color: white;">${{ltc}} LTC</h3>
+                                  <h3 class="mb-5" style="color: white;">${{third}} LTC</h3>
                                 
                               </div>
-                          </div>
+                          </div></a>
                       </div>
     
                   </div>
@@ -151,7 +168,7 @@
               <div class="content-body">
                   <div class="row">
                       <div class="col-xs-12">
-                         <img src="https://miro.medium.com/max/1200/1*yvJxjj91bptjak3Xy3i1oQ.png" width="700px" height="400px"></img>
+                         <img src="data:image/png;base64, {{chart|safe}}" width="700px" height="400px"></img>
                       </div>
                   </div>
               </div>
@@ -165,7 +182,7 @@
     <div style="margin-top: 20%; background-color: white; width: 20%; height: 20%; margin-left: 70%;">
     
       <h3 style="color:orange"><img src="{% static 'user/nw1.gif' %}" width="100px" height="100px"><i><u>NEWS</u></i></h3>
-      <a href="http://localhost:8000/coinnews/bitcoin" style="text-decoration: none;"><h4 style="color: orange;"><i><b>News Realted To Bitcoin</b></i></h4></a>
+      <a href="http://localhost:8000/coinnews/{{name}}" style="text-decoration: none;"><h4 style="color: orange;"><i><b>News Realted To {{name}}</b></i></h4></a>
     </div>
       
       

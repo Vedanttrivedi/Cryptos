@@ -1,0 +1,23 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-lg-8">
+    <section class="box" style="overflow:hidden">
+        <header class="panel_header">
+            <h2 class="title pull-left">Analyze Chart</h2>
+            
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                   <img src="data:image/png;base64, {{chart|safe}}" width="700px" height="400px"></img>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h2 class="title pull-left" style="color:white;">
+        There is Huge Difference Between <a href="http://localhost:8000/analysis/bitcoin" style="color:orange;">Bitcoin</a>
+         And <a href="http://localhost:8000/analysis/litecoin" style="color:rgb(55, 55, 192);">Litecoin</a>,<a href="http://localhost:8000/analysis/ethereum" style="color:red;">Ethereum</a> Prices So Values Are Taken In Log Format</h2>
+</div>
+  {% endblock %}

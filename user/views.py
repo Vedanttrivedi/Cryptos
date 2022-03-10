@@ -21,6 +21,8 @@ def home(request):
     return render(request,'user/base.html')
     
 def login(request):
+    if request.user.is_authenticated:
+        return redirect("home page")
     if request.method=="POST":
         name = request.POST["username"].lower()
         password =request.POST["password"]
@@ -37,13 +39,17 @@ def login(request):
             auth_login(request,user1)
             messages.success(request,"Logged In")
             return redirect("home page")
-        if True:
-            return redirect("/user/login")
+        else:
+            messages.success(request,"Username or Email Already Taken")
+            return redirect("loginPage")
     return render(request,"user/login.html")
 
 
 
 def register(request):
+    
+    if request.user.is_authenticated:
+        return redirect("home page")
     if request.method=="POST":
         firstname = request.POST["firstname"]
         lastname = request.POST["lastname"]

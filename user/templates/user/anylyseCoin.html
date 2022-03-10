@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-lg-8">
+    <section class="box" style="overflow:hidden">
+        <header class="panel_header">
+            <h2 class="title pull-left">Analysis Of {{name}} </h2>
+            
+        </header>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xs-12">
+                   <img src="data:image/png;base64, {{chart|safe}}" width="700px" height="400px"></img>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+  {% endblock %}

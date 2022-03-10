@@ -9,9 +9,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path('',pd_views.home,name="home page"),
-    path('<coin>',pd_views.oneCoin,name="coin page"),
+    path('coin/<coin>',pd_views.oneCoin,name="coin page"),
     
     path('accounts/', include('allauth.urls')),
+    path('check/', pd_views.anylyse,name="analysis page"),
+    path('analysis/<coin>',pd_views.analysisCoin,name="coin analysis"),
     path('admin/', admin.site.urls),
     path("onecoin/<coin>",pd_views.oneCoin,name="oneCoin"),
     path('converter/',cu_views.converter,name="currency converter"),
